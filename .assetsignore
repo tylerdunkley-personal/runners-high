@@ -1,0 +1,6 @@
+README.md
+wrangler.jsonc
+.git/
+.gitignore
+.wrangler/
+node_modules/

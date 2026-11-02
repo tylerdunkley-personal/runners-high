@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#d5ff53"><meta name="description" content="Runners High, Jacksonville, Florida. A little noise. A little nostalgia. Welcome to the band computer.">
+  <title>Runners High — Band Computer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23d5ff53'/%3E%3Ctext x='3' y='24' font-size='24' font-family='monospace' font-weight='bold'%3Erh%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+<header class="menubar"><button class="brand" data-open="welcome">rh<span>®</span></button><b>RUNNERS HIGH OS</b><nav><button data-open="welcome">File</button><button data-open="zine">Explore</button><button data-open="about">Help</button></nav><div class="system"><button id="fx" aria-pressed="true">CRT <span>ON</span></button><span class="online"><i></i> online, probably</span><time id="clock"></time></div></header>
+<main id="desktop">
+  <div class="wallpaper" aria-hidden="true"><div class="wallpaper-meta">A BAND FROM JACKSONVILLE, FLORIDA<br>EST. IN THE REAL WORLD / ONLINE FOREVER</div><div class="wordmark">runners<br><span>high</span><sup>®</sup></div><div class="wallpaper-foot">LOUD MUSIC. GOOD COMPANY. BAD INTERNET.<br>YOU HAD TO BE THERE. OR YOU CAN BE HERE.</div><svg class="star star-one" viewBox="0 0 100 100"><path d="M50 0 59 33 85 15 67 41 100 50 67 59 85 85 59 67 50 100 41 67 15 85 33 59 0 50 33 41 15 15 41 33Z"/></svg><svg class="star star-two" viewBox="0 0 100 100"><path d="M50 0 59 33 85 15 67 41 100 50 67 59 85 85 59 67 50 100 41 67 15 85 33 59 0 50 33 41 15 15 41 33Z"/></svg></div>
+  <aside class="shortcuts" aria-label="Desktop applications">
+    <button class="shortcut" data-open="player"><span class="pixel-icon music-icon">♫</span><span>rhTunes.exe</span></button>
+    <button class="shortcut" data-open="game"><span class="pixel-icon game-icon">✚<small>● ●</small></span><span>RUNNER_01</span></button>
+    <button class="shortcut" data-open="zine"><span class="folder-icon"><i>RH</i></span><span>the good stuff</span></button>
+    <button class="shortcut" data-open="about"><span class="pixel-icon disk-icon">rh<small>README</small></span><span>read_me.txt</span></button>
+  </aside>
+
+  <section class="window welcome" id="welcome" aria-label="Welcome to Runners High">
+    <header class="titlebar"><span><i class="tiny-star">✳</i> welcome.txt</span><div><button data-minimize="welcome" aria-label="Minimize welcome">_</button><button data-close="welcome" aria-label="Close welcome">×</button></div></header>
+    <div class="window-menu">File <span>Edit</span> <span>View</span><span class="file-path">C:\RUNNERS_HIGH\</span></div>
+    <div class="welcome-body"><div class="eyebrow"><span class="status-dot"></span> CONNECTION ESTABLISHED</div><h1>Your new<br>favorite place<br>to <em>get lost.</em></h1><p>Somewhere between a burned CD and<br>a very good night in Jacksonville.</p><p>We’re Runners High.<br>Make yourself at home.</p><button class="retro-button primary" data-open="player">TURN IT UP <span>↗</span></button><div class="welcome-sticker">100%<br><b>GOOD<br>NOISE</b></div></div>
+    <footer class="window-status"><span>✳ all friends welcome</span><span>1 item(s) / infinite possibilities</span></footer>
+  </section>
+
+  <section class="window player-window" id="player" aria-label="Music player">
+    <header class="titlebar"><span>♫ rhTunes — portable good noise</span><div><button data-minimize="player" aria-label="Minimize player">_</button><button data-close="player" aria-label="Close player">×</button></div></header>
+    <div class="player-surround"><div class="device"><div class="device-screen"><div class="device-status"><b>rhTunes</b><span>▶ <span class="battery">▰</span></span></div><div class="cover"><div class="cover-orbit"></div><span>RH<br><em>RADIO</em></span><small>JACKSONVILLE, FL</small></div><div class="track-info"><b id="track-title">After Hours</b><span id="track-subtitle">OS demo • original chiptune loop</span></div><input id="scrubber" type="range" min="0" max="100" value="0" aria-label="Track position"><div class="track-time"><span id="elapsed">0:00</span><span id="duration">0:32</span></div></div><div class="clickwheel"><button id="menu-track" class="wheel-menu">MENU</button><button id="prev-track" class="wheel-prev" aria-label="Previous track">◀◀</button><button id="next-track" class="wheel-next" aria-label="Next track">▶▶</button><button id="play-track" class="wheel-play" aria-label="Play or pause">▶Ⅱ</button><button id="center-play" class="wheel-center" aria-label="Play or pause music"><span>▶</span></button></div><div class="device-brand">rh <span>128 good times</span></div></div><div class="player-note"><span class="status-dot"></span> YOUR POCKET-SIZED ESCAPE</div><label class="import-music">＋ load your own MP3s<input id="music-files" type="file" accept="audio/*" multiple></label><div id="track-list" hidden></div></div>
+    <footer class="window-status"><span id="player-status">Demo audio loaded</span><span>STEREO</span></footer>
+  </section>
+
+  <section class="window game-window" id="game" aria-label="Runner 01 arcade game" hidden>
+    <header class="titlebar"><span>✚ RUNNER_01.gbc</span><div><button data-minimize="game" aria-label="Minimize game">_</button><button data-close="game" aria-label="Close game">×</button></div></header>
+    <div class="game-body"><div class="game-top"><span>RH ENTERTAINMENT SYSTEM</span><span>ORIGINAL CARTRIDGE / 01</span></div><canvas id="game-canvas" width="720" height="360" tabindex="0" aria-label="Runner game. Press Space, up arrow, or tap to jump over obstacles."></canvas><div class="game-controls"><button id="game-start" class="retro-button primary">INSERT COIN / START</button><button id="game-jump" class="retro-button">JUMP ↑</button><button id="game-pause" class="retro-button">PAUSE</button></div><p>SPACE / ↑ / TAP TO JUMP <span>·</span> DODGE THE AMPS. CHASE THE HIGH.</p><small>An original browser arcade game. No emulator or ROM required.</small></div>
+    <footer class="window-status"><span id="game-status">Ready, player one.</span><span id="best-score">BEST: 0000</span></footer>
+  </section>
+
+  <section class="window zine-window" id="zine" aria-label="The Runners High zine" hidden>
+    <header class="titlebar"><span><span class="tiny-star">▰</span> the good stuff / RH_ZINE_001</span><div><button data-minimize="zine" aria-label="Minimize zine">_</button><button data-close="zine" aria-label="Close zine">×</button></div></header>
+    <div class="window-menu">File <span>Edit</span> <span>View</span><span class="file-path">3 pages / concept edition</span></div>
+    <div class="zine-paper" id="zine-paper"></div><div class="zine-nav"><button id="zine-prev" class="retro-button" aria-label="Previous zine page">← BACK</button><span id="zine-count">01 / 03</span><button id="zine-next" class="retro-button">TURN THE PAGE →</button></div>
+  </section>
+
+  <section class="window about-window" id="about" aria-label="About this computer" hidden>
+    <header class="titlebar"><span>read_me.txt — Notepad</span><div><button data-close="about" aria-label="Close read me">×</button></div></header><div class="readme"><span class="eyebrow">RUNNERS HIGH OS / VERSION 1.0</span><h2>Glad you found us.</h2><p>A little corner of the internet for Runners High, a band from Jacksonville, Florida.</p><p>Open the folders. Play something loud. Beat your high score. Stay a while.</p><hr><h3>HOW TO USE THIS THING</h3><p>Click a desktop icon to open an app. Drag a title bar to move a window. Use the taskbar to bring it back.</p><p><b>rhTunes:</b> includes an original demo loop. Load local audio with “load your own MP3s.” Files stay on your device.</p><p><b>RUNNER_01:</b> our original arcade game, inspired by old handhelds. Space or tap to jump.</p><p><b>The good stuff:</b> a three-page concept zine, ready for the band’s photos and stories.</p><button id="reset-layout" class="retro-button">RESET WINDOW POSITIONS ↺</button></div><footer class="window-status">Built for loud speakers & curious people.</footer>
+  </section>
+
+  <div class="desktop-label"><span class="status-dot"></span> YOU ARE HERE. THAT’S ENOUGH.</div><div class="desktop-version">RH_OS v.1.0<br>JAX, FL ↗</div>
+</main>
+<footer class="taskbar"><button class="start-button" id="start-button" aria-expanded="false"><span>✳</span> start</button><div class="task-buttons" id="task-buttons"></div><div class="taskbar-right"><span>♪</span><span>NO SIGNAL LOST</span><b>RH®</b></div></footer>
+<div class="start-menu" id="start-menu" hidden><div class="start-menu-brand">runners high <span>OS</span></div><button data-open="welcome">✳ Welcome home</button><button data-open="player">♫ rhTunes</button><button data-open="game">✚ Runner 01</button><button data-open="zine">▰ The good stuff</button><button data-open="about">▤ About this computer</button></div>
+<div class="toast" id="toast" role="status" hidden></div>
+</body></html>
