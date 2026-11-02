@@ -65,7 +65,11 @@ $('#scrubber').addEventListener('input',e=>{const wasPlaying=playing;pauseMusic(
 audio.addEventListener('ended',()=>selectTrack(currentTrack+1,true)); audio.addEventListener('error',()=>{playing=false;updatePlayer();toast('Audio unavailable. Load another file to keep listening.');});
 setInterval(()=>{const p=position(),d=duration();$('#elapsed').textContent=timeLabel(p);$('#duration').textContent=timeLabel(d);$('#scrubber').value=d?p/d*100:0;},250);
 renderTrackList();updatePlayer();
-fetch('content.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(content=>{if(Array.isArray(content.tracks)&&content.tracks.length){const valid=content.tracks.filter(t=>t.title&&t.src).map(t=>({title:t.title,src:t.src,subtitle:t.subtitle||'Runners High'}));if(valid.length){tracks=valid;selectTrack(0);}} }).catch(()=>{});
+const contentReady=fetch('content.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(content=>{
+  if(Array.isArray(content.tracks)&&content.tracks.length){const valid=content.tracks.filter(t=>t.title&&t.src).map(t=>({title:t.title,src:t.src,subtitle:t.subtitle||'Runner’s High'}));if(valid.length){pauseMusic();tracks=valid;selectTrack(0);}}
+  if(Array.isArray(content.bandcampReleases))loadBandReleases(content.bandcampReleases);
+  return content;
+}).catch(()=>({}));
 
 const pages=[
   `<div class="zine-kicker"><span>RUNNER’S HIGH / THE XEROX FILES</span><span>ISSUE 001 / JACKSONVILLE, FL</span></div><div class="zine-title">RAT<span>MOTEL.</span></div><div class="zine-art"><img src="https://f4.bcbits.com/img/a4169676350_10.jpg" alt="Gone Fishin’ album artwork" width="200" height="160"><b>GONE<br>FISHIN’<br>2020</b><span>TRACK 03 / 03:11</span></div><div class="zine-bottom"><strong>FOUR SONGS.<br>ONE LIVING<br>ROOM.</strong><span>Gone Fishin’ was recorded in Liam and Carson’s living room.<br><a href="https://runnershigh.bandcamp.com/track/rat-motel" target="_blank" rel="noopener noreferrer">PLAY RAT MOTEL ↗</a></span></div><a class="zine-source" href="https://runnershigh.bandcamp.com/album/gone-fishin" target="_blank" rel="noopener noreferrer">SOURCE: GONE FISHIN’ / OFFICIAL BANDCAMP LINER NOTES ↗</a>`,
@@ -90,3 +94,22 @@ function setMusicMode(mode){
 $('#band-mode').addEventListener('click',()=>setMusicMode('band'));
 $('#mixtape-mode').addEventListener('click',()=>setMusicMode('mixtape'));
 setMusicMode('band');
+
+let bandReleases=[];
+function loadBandReleases(releases){
+  bandReleases=releases.filter(r=>{try{const e=new URL(r.embed);return r.title&&e.protocol==='https:'&&e.hostname==='bandcamp.com'&&e.pathname.startsWith('/EmbeddedPlayer/');}catch{return false;}});
+  if(!bandReleases.length)return;
+  $('#band-release').replaceChildren(...bandReleases.map((r,i)=>{const o=document.createElement('option');o.value=i;o.textContent=r.title;return o;}));
+  $('#band-release').value='0';
+}
+function selectBandRelease(index){
+  const r=bandReleases[index];if(!r)return;
+  pauseMusic();if(typeof pauseGame==='function')pauseGame();
+  $('#bandcamp-player').src=r.embed;$('#bandcamp-player').style.height=Math.max(42,Math.min(600,Number(r.height)||42))+'px';
+  $('#bandcamp-player').title=r.title+' — official Bandcamp player';
+  if(r.artwork&&/^https:\/\//.test(r.artwork)){$('.official-screen>img').src=r.artwork;$('.official-screen>img').alt=r.title+' artwork';}
+  $('#official-title').textContent=r.title;$('#official-subtitle').textContent=r.subtitle||'Runner’s High';
+  if(r.url&&/^https:\/\//.test(r.url))$('.bandcamp-link').href=r.url;
+  $('#player').classList.toggle('album-mode',Number(r.height)>42);
+}
+$('#band-release').addEventListener('change',e=>selectBandRelease(Number(e.target.value)));

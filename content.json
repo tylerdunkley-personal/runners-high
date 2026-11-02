@@ -1,3 +1,22 @@
 {
-  "tracks": []
+  "tracks": [],
+  "bandcampReleases": [
+    {
+      "title": "Rat Motel",
+      "subtitle": "GONE FISHIN\u2019 / 2020",
+      "url": "https://runnershigh.bandcamp.com/track/rat-motel",
+      "artwork": "https://f4.bcbits.com/img/a4169676350_10.jpg",
+      "embed": "https://bandcamp.com/EmbeddedPlayer/album=82311072/size=small/bgcol=ffffff/linkcol=0687f5/track=3614785994/transparent=true/",
+      "height": 42
+    },
+    {
+      "title": "Gone Fishin\u2019 \u2014 all four songs",
+      "subtitle": "SUPERHYDRATION / CAR BOMB / RAT MOTEL / SPRING CLEANING",
+      "url": "https://runnershigh.bandcamp.com/album/gone-fishin",
+      "artwork": "https://f4.bcbits.com/img/a4169676350_10.jpg",
+      "embed": "https://bandcamp.com/EmbeddedPlayer/album=82311072/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/",
+      "height": 274
+    }
+  ],
+  "gameTracks": []
 }
