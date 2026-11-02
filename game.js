@@ -54,7 +54,7 @@ async function startGame(){
     notes=chart.map(n=>({...n,state:'pending'}));score=0;combo=0;maxCombo=0;hits=0;missed=0;badHits=0;rock=60;charge=0;boostUntil=0;lastTick=0;gameOffset=0;judgement='';countdownValue=-1;lastNoteIndex=-1;
     laneFlashes.fill(-5);pressedLanes.clear();gameState='running';startGameSource();
     $('#game-start').textContent='RESTART ↺';$('#game-pause').textContent='PAUSE';$('#game-pause').disabled=false;
-    $('#game-status').textContent='A / S / D / J / K — hold long notes. SPACE strums in strum mode.';
+    $('#game-status').textContent='LIVE / 303';
     canvas.focus({preventScroll:true});frame=requestAnimationFrame(tick);
   }catch{gameState='ready';$('#game-status').textContent='Audio could not start. Press START to try again.';drawGame();}
   finally{$('#game-start').disabled=false;}
@@ -142,9 +142,9 @@ function drawGame(){
   }else{
     ctx.fillStyle='#111111ed';ctx.fillRect(85,106,550,177);ctx.strokeStyle='#a7a18d';ctx.lineWidth=1;ctx.strokeRect(85,106,550,177);ctx.textAlign='center';ctx.fillStyle='#ef5143';ctx.font='bold 39px monospace';
     ctx.fillText(gameState==='finished'?'ENCORE?':gameState==='paused'?'HOLD THAT NOTE.':gameState==='loading'?'PLUGGING IN…':'MAKE SOME NOISE.',360,154);
-    ctx.fillStyle='#ded7c6';ctx.font='11px monospace';ctx.fillText(gameState==='finished'?`SCORE ${score}  /  ${Math.round(hits/chart.length*100)}% HIT  /  COMBO ${maxCombo}`:gameState==='paused'?'SAME SONG. RIGHT WHERE YOU LEFT IT.':'FIVE FRETS. LONG NOTES. CHORDS. LOUDER.',360,191);
-    ctx.fillStyle='#aaa498';ctx.font='10px monospace';ctx.fillText(gameState==='finished'?'YOUR HIGH SCORE STAYS ON THIS COMPUTER.':gameState==='paused'?'PRESS RESUME OR ESC TO COME BACK IN.':'A / S / D / J / K — HOLD LONG NOTES',360,220);
-    ctx.font='8px monospace';ctx.fillText(songId==='demo'?'ORIGINAL PRACTICE RIFF / LOAD YOUR OWN SONG BELOW':chartLabel==='AUTO CHART'?'YOUR LOCAL SONG / APPROXIMATE AUTO CHART':'YOUR LOCAL SONG / HAND-TIMED CHART',360,254);
+    ctx.fillStyle='#ded7c6';ctx.font='11px monospace';ctx.fillText(gameState==='finished'?`SCORE ${score}  /  ${Math.round(hits/chart.length*100)}% HIT  /  COMBO ${maxCombo}`:gameState==='paused'?'INTERMISSION':'SOUNDCHECK / 303',360,191);
+    ctx.fillStyle='#aaa498';ctx.font='10px monospace';ctx.fillText(gameState==='finished'?'YOUR HIGH SCORE STAYS ON THIS COMPUTER.':gameState==='paused'?'Ⅱ':'A · S · D · J · K',360,220);
+    ctx.font='8px monospace';ctx.fillText(songId==='demo'?'SOUNDCHECK / ORIGINAL RIFF':chartLabel==='AUTO CHART'?'TAPE / AUTO':'TAPE / CUSTOM',360,254);
   }
 }
 $('#game-start').addEventListener('click',startGame);
